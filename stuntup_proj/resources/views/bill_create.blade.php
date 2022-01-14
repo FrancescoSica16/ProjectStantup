@@ -12,8 +12,8 @@
 
     <h1>Inserisci i dati della fattura</h1>
 
-    <form name="input" method="get">
-        <input class="form-control m-3" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="" type="text" name="item" >
+    <form name="input" method="POST" action="{{ route('user.apartments.store') }}">
+        <input class="form-control m-3 w-50" id="bill_number" aria-describedby="emailHelp" placeholder="Inserisci il n° fattura" type="text" name="item" >
     </form>
 
     <button class="btn btn-primary m-3" type="button" onclick="add_field()">Aggiungi campo</button>
@@ -26,11 +26,19 @@
             var form = document.getElementsByTagName('form')[0],
             input = document.createElement('input');
             input.setAttribute('type', 'text');
-            input.setAttribute('name', 'item');
-            input.setAttribute('class', 'form-control m-3')
+            input.setAttribute('name', 'bill_field');
+            input.setAttribute('class', 'form-control m-3 w-25 d-inline');
+            input.setAttribute('placeholder', 'nuovo campo in fattura');
+            form.appendChild(input);
+
+            input = document.createElement('input');
+            input.setAttribute('type', 'text');
+            input.setAttribute('name', 'bill_field_value');
+            input.setAttribute('class', 'form-control m-3 w-50 d-inline');
+            input.setAttribute('placeholder', 'valore nuovo campo');
             form.appendChild(input);
         };
     </script>
-    {{-- <script type="text/javascript" src="{{ asset('js/app.js') }}></script> --}}
+    
 </body>
 </html>

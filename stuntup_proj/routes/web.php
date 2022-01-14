@@ -2,6 +2,8 @@
 
 use Illuminate\Support\Facades\Route;
 
+use App\Http\Controllers\BillController;
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -18,6 +20,15 @@ Route::get('/', function () {
 });
 
 
-Route::get('/bill', function () {
-    return view('bill_create');
-});
+// Route::get('/bill', function () {
+//     return view('bill_create');
+// })->name("bill_create");
+
+// Route::get('/bill', function () {
+//     return view('bill_store');
+// })->name("bill_store");
+
+Route::get('bill-form', [BillController::class, 'index']);
+Route::post('store-bill', [BillController::class, 'store']);
+
+Route::get('bill-view', [BillController::class, 'show']);

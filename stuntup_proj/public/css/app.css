@@ -24312,5 +24312,6 @@ fieldset:disabled .btn {
 
 input {
   display: block;
+  width: 50px;
 }
 

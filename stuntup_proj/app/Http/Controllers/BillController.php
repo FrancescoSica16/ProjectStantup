@@ -1,8 +1,8 @@
 <?php
 
 namespace App\Http\Controllers;
-
 use Illuminate\Http\Request;
+use App\Bill;
 
 class BillController extends Controller
 {
@@ -13,7 +13,7 @@ class BillController extends Controller
      */
     public function index()
     {
-        //
+        return view('bill-form');
     }
 
     /**
@@ -23,7 +23,7 @@ class BillController extends Controller
      */
     public function create()
     {
-        //
+        // return view('bill_create');
     }
 
     /**
@@ -34,7 +34,14 @@ class BillController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $data = $request->all();
+
+        $bill = new Bill;
+        $bill->title = $request->title;
+        $bill->fill($data);
+        $bill->save();
+
+        return redirect()->route('bill-view')->with('status', 'la fattura è stata salvata');
     }
 
     /**
@@ -43,9 +50,9 @@ class BillController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show(Bill $bill)
     {
-        //
+        return view("bill-view", compact("bill"));
     }
 
     /**
