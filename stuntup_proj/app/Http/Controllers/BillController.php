@@ -13,7 +13,7 @@ class BillController extends Controller
      */
     public function index()
     {
-        return view('bill-form');
+        return view('bill_create');
     }
 
     /**
@@ -21,9 +21,12 @@ class BillController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function create(Request $request)
     {
-        // return view('bill_create');
+
+        $bill = new Bill();
+       
+        return view('bill_create', compact('bill'));
     }
 
     /**
@@ -34,14 +37,30 @@ class BillController extends Controller
      */
     public function store(Request $request)
     {
+        //dd($request);
         $data = $request->all();
 
         $bill = new Bill;
-        $bill->title = $request->title;
-        $bill->fill($data);
-        $bill->save();
+        $bill["bill_number"] = $data['bill_number'];
+        $bill["bill_attr_name"] = $data['bill_attr_name'];
+        $bill["bill_attr_value"] = $data['bill_attr_value'];
 
-        return redirect()->route('bill-view')->with('status', 'la fattura è stata salvata');
+        //$bill->fill($data);
+        $bill->save();
+        
+        $attr="bill_attr_name";
+        $val="bill_attr_value";
+        for($i=1;$i<=$data['index'];$i++)
+        {
+            $bill = new Bill;
+            $bill["bill_number"] = $data['bill_number'];
+            $bill["bill_attr_name"] = $data[$attr.$i];
+            $bill["bill_attr_value"] = $data[$val.$i];
+            $bill->save();
+        }
+        
+
+        return redirect()->route('bill_view')->with('status', 'la fattura è stata salvata');
     }
 
     /**
@@ -52,7 +71,7 @@ class BillController extends Controller
      */
     public function show(Bill $bill)
     {
-        return view("bill-view", compact("bill"));
+        return view("bill_view", compact("bill"));
     }
 
     /**

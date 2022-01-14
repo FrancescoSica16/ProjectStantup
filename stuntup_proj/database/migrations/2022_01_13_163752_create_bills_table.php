@@ -15,7 +15,9 @@ class CreateBillsTable extends Migration
     {
         Schema::create('bills', function (Blueprint $table) {
             $table->id();
-            $table->integer('bill_number');
+            $table->string('bill_number');
+            $table->string('bill_attr_name');
+            $table->string('bill_attr_value');
             $table->timestamps();
         });
     }
