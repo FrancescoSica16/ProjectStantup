@@ -28,8 +28,10 @@ Route::get('/', function () {
 //     return view('bill_store');
 // })->name("bill_store");
 
-Route::get('bill_create', [BillController::class, 'create']);
+Route::get('bill_create', [BillController::class, 'create'])->name('bill_create');
 
 Route::post('bill_create', [BillController::class, 'store'])->name('bill_creator');
 
-Route::get('bill_view', [BillController::class, 'show'])->name('bill_view');
+Route::get('bill_view/{bill_number}', [BillController::class, 'show'])->name('bill_view');
+
+Route::get('bill_index', [BillController::class, 'index'])->name('bill_index');

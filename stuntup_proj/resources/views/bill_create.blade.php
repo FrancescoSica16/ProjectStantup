@@ -10,24 +10,26 @@
 </head>
 <body>
 
-    <h1>Inserisci i dati della fattura</h1>
+    <h1 class="m-3">Inserisci i dati della fattura</h1>
 
     <form name="input" method="POST" action="{{ route('bill_creator') }}">
         @csrf
-     <input class="form-control m-3 w-50" id="bill_number" aria-describedby="emailHelp" placeholder="Inserisci il n° fattura" type="text" name="bill_number" >
+        <button type="submit" class="btn btn-danger m-3">Salva Fattura</button>
+        <input class="form-control m-3 w-50" id="bill_number" aria-describedby="emailHelp" placeholder="Inserisci il n° fattura" type="text" name="bill_number" >
         <input type="hidden" id="indexAttr" name="index" value="-1">
-        <button type="submit" class="btn btn-danger">Submit</button>
+        
     </form>
 
-    <button class="btn btn-primary m-3" type="button" onclick="add_field()">Aggiungi campo</button>
-    
-    
+    <button class="btn btn-primary m-3" type="button" onclick="add_field()">Aggiungi campo in fattura</button>
+    <a href="{{route("bill_index")}}">
+        <button class="btn btn-primary m-3">Torna alla lista fatture</button>
+    </a>
     
     <script>
         let count ="";
         function add_field() 
         {
-            debugger;
+            
             var index = document.getElementById('indexAttr');
             index.value =parseInt(index.value)+1;
             var form = document.getElementsByTagName('form')[0],

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Bill;
+use Illuminate\Support\Facades\DB;
 
 class BillController extends Controller
 {
@@ -13,7 +14,9 @@ class BillController extends Controller
      */
     public function index()
     {
-        return view('bill_create');
+        $bills = Bill::all();
+        
+        return view('bill_index', compact('bills'));
     }
 
     /**
@@ -69,9 +72,16 @@ class BillController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show(Bill $bill)
+    public function show(Bill $bill , $bill_number)
     {
-        return view("bill_view", compact("bill"));
+        
+        // $bill_number = DB::table('bills')->select('bill_attr_name', 'bill_attr_value')->where('bill_number', '=' , '{$bill_number}')->get();
+
+        // $bill_number = DB::table('bills')->select('bill_number')->where('bill_number', '=' , $bill_number)->get();
+
+        $bill = DB::table('bills')->select('bill_attr_name', 'bill_attr_value')->where('bill_number', '=' , $bill_number)->get();
+        
+        return view("bill_view", compact("bill_number", "bill"));
     }
 
     /**
