@@ -8,7 +8,7 @@
     <title>Vista fattura</title>
 </head>
 <body>
-    <h3>la tua fattura</h3>
+    <h3>la tua fattura n°{{$bill_number}}</h3>
     <table class="table table-dark">
 
     <thead>
@@ -22,5 +22,9 @@
         @endforeach
     </tbody>    
     </table>
+
+    <a href="{{route("generate_pdf", $bill_number )}}">
+        <button class="btn btn-primary m-3">Genera PDF fattura</button>
+    </a>
 </body>
 </html>

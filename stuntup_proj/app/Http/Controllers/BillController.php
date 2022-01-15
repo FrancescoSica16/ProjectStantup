@@ -14,7 +14,7 @@ class BillController extends Controller
      */
     public function index()
     {
-        $bills = Bill::all();
+        $bills = DB::table('bills')->distinct()->get('bill_number');
         
         return view('bill_index', compact('bills'));
     }
@@ -63,7 +63,7 @@ class BillController extends Controller
         }
         
 
-        return redirect()->route('bill_view')->with('status', 'la fattura è stata salvata');
+        return redirect()->route('bill_index')->with('status', 'la fattura è stata salvata');
     }
 
     /**
@@ -80,7 +80,7 @@ class BillController extends Controller
         // $bill_number = DB::table('bills')->select('bill_number')->where('bill_number', '=' , $bill_number)->get();
 
         $bill = DB::table('bills')->select('bill_attr_name', 'bill_attr_value')->where('bill_number', '=' , $bill_number)->get();
-        
+        //dd($bill);
         return view("bill_view", compact("bill_number", "bill"));
     }
 

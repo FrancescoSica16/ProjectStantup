@@ -4,6 +4,8 @@ use Illuminate\Support\Facades\Route;
 
 use App\Http\Controllers\BillController;
 
+use App\Http\Controllers\PDFController;
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -35,3 +37,5 @@ Route::post('bill_create', [BillController::class, 'store'])->name('bill_creator
 Route::get('bill_view/{bill_number}', [BillController::class, 'show'])->name('bill_view');
 
 Route::get('bill_index', [BillController::class, 'index'])->name('bill_index');
+
+Route::get('generate-pdf/{bill_number}', [PDFController::class, 'generatePDF'])->name('generate_pdf');
