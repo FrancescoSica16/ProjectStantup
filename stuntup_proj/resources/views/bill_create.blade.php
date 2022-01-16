@@ -15,7 +15,7 @@
     <form name="input" method="POST" action="{{ route('bill_creator') }}">
         @csrf
         <button type="submit" class="btn btn-danger m-3">Salva Fattura</button>
-        <input class="form-control m-3 w-50" id="bill_number" aria-describedby="emailHelp" placeholder="Inserisci il n° fattura" type="text" name="bill_number" >
+        <input class="form-control m-3 w-25" id="bill_number" aria-describedby="emailHelp" placeholder="Inserisci il n° fattura" type="text" name="bill_number" >
         <input type="hidden" id="indexAttr" name="index" value="-1">
         
     </form>

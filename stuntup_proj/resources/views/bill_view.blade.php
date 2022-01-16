@@ -9,15 +9,15 @@
 </head>
 <body>
     <h3>la tua fattura n°{{$bill_number}}</h3>
-    <table class="table table-dark">
+    <table class="table table-dark w-75">
 
     <thead>
-        <tr><th scope="col">Colonna attributi</th><th scope="col">Colonna valori</th></tr>
+        <tr><th scope="col">Campo Fattura</th><th scope="col">Valore Campo</th></tr>
     </thead>
     <tbody>
         @foreach ($bill as $item)
        
-            <tr><td>{{$item->bill_attr_name}}</td><td>{{$item->bill_attr_value}}</td></tr>
+            <tr><td class="w-25">{{$item->bill_attr_name}}</td><td class="">{{$item->bill_attr_value}}</td></tr>
              
         @endforeach
     </tbody>    

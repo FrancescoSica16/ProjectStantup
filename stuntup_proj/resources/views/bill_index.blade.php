@@ -16,7 +16,7 @@
             <button class="btn btn-primary m-3">Crea nuova fattura</button>
         </a>
     
-    <table class="table table-dark m-3">
+    <table class="table table-dark m-3 w-50">
         <thead>
             <th class="col-1">n°fattura</th>
         </thead>
